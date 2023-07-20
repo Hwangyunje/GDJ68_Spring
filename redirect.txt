@@ -1,0 +1,1 @@
+리턴값에 문자열로 "redirect:주소"를 넣으면redirect가능

@@ -14,7 +14,7 @@
 
  <c:import url="./temp/header.jsp"></c:import> 
 	<h1 class="text-bg-info p-3">Detail Page</h1>
-
+		<h1>${num}</h1>
 	<!-- getter 이름:메서드에서 get을 제외하고 첫번째글자를 소문자로 바꾼것 -->
 	<h1>${requestScope.dto.BookName}</h1>
 	<h1>${dto.bookRate} </h1>

@@ -32,7 +32,7 @@
 		</tbody>
 	</table>
 	
-	<a class="btn btn-danger" href="./add.do">상품등록</a>
+	<a class="btn btn-danger" href="./add">상품등록</a>
 	
 	</section>
 	<a href="./add.do">상품등록</a>
