@@ -11,7 +11,7 @@
 <body>
 	<h1>Add page</h1>
  <c:import url="./temp/header.jsp"></c:import> 
-	<form action="./add.do" method="post">
+	<form action="./add" method="post">
 		상품명<input class="form-control form-control-lg text-bg-secondary p-3" type="text" placeholder=".form-control-lg" type="text"name="bookName"><br>
 		이자율<input class="form-control form-control-lg text-bg-secondary p-3" type="text" placeholder=".form-control-lg" type="text"name="bookRate"><br>
 		

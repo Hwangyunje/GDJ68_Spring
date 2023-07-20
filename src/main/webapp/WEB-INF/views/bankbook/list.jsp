@@ -23,7 +23,7 @@
 			<c:forEach items="${list}" var="d" varStatus="i">
 				<tr>
 					<td>
-					<a href="./detail.do?bookNUm="${d.bookNum}">${d.bookName}</a></td>
+					<a href="./detail?bookNUm="${d.bookNum}">${d.bookName}</a></td>
 					<td>${d.bookRate} ${i.index} </td>
 				</tr>
 			</c:forEach>
@@ -32,10 +32,10 @@
 		</tbody>
 	</table>
 	
-	<a class="btn btn-danger" href="./add.do">상품등록</a>
+	<a class="btn btn-danger" href="./add">상품등록</a>
 	
 	</section>
-	<a href="./add.do">상품등록</a>
+	<a href="./add">상품등록</a>
 	
 <%-- 	<c:forEach begin="1" end="10" step="2"  var="num">
 		<h1>${num}</h1>
