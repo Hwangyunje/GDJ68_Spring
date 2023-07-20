@@ -1,0 +1,4 @@
+포트충돌시
+netstat -a -o 
+사용포트번호pid확인후
+taskkill /f /pid 0000
