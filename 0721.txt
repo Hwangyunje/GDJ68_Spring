@@ -1,0 +1,17 @@
+1.DB연결 - ip:port,ID,PW,Driver
+
+2.query문 전송
+
+3.결과처리
+	
+parameter:key 와 밸류로이루어져있다
+
+요청의 필수요소
+URL:ip:port/경로명
+Method:GET,POST
+Cookie:key와value
+옵션:
+파라미터:
+
+get:url?키=밸류
+POST:url

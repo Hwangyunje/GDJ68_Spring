@@ -7,18 +7,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BankBookService {
-
+	
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
-	public List<BankBookDTO> getList() throws Exception{
+	public List<BankBookDTO> getList()throws Exception{
 		return bankBookDAO.getList();
 	}
-	
+
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO)throws Exception{
-		return bankBookDTO.getDetail(bankbookDTO);
+		return bankBookDAO.getDetail(bankBookDTO);
 	}
-	}
-	
 	
 }

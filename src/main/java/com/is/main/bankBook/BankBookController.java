@@ -26,7 +26,7 @@ public class BankBookController {
 	@RequestMapping(value="detail")
 	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mv)throws Exception{
 		
-		bankBookDTO=BankBookService.getDetail(bankBookDTO);
+		bankBookDTO=bankBookService.getDetail(bankBookDTO);
 		System.out.println(bankBookDTO.getBookName());
 		mv.addObject("dto", bankBookDTO);
 		mv.setViewName("bankbook/detail");
