@@ -28,6 +28,7 @@
 		</c:otherwise>
 	</c:choose>
 	
+
 	<%--
 	 <c:if test="${dto.bookSale eq 1}">
 	<h1>판매중</h1>
