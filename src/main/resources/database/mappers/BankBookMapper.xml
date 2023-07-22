@@ -5,11 +5,11 @@
   
   <mapper namespace="com.is.main.bankBook.BankBookDAO">
  	
- 	<select id="getList" resultType="com.is.main.bankbook.BankBook.DTO">
+ 	<select id="getList" resultType="com.is.main.bankBook.BankBookDTO">
  		SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
  	</select>
  	
- 	<select id="getDetail" resultType="com.is.main.bankbook.BankBook.DTO" parameterType="com.is.main.bankbook.BankBook.DTO">
+ 	<select id="getDetail" resultType="com.is.main.bankBook.BankBook.DTO" parameterType="com.is.main.bankBook.BankBookDTO">
  		SELECT *FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
  	</select>
  	
