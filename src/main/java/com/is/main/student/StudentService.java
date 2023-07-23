@@ -12,5 +12,16 @@ public class StudentService {
 	public List<StudentDTO> getList() throws Exception{
 		return studentDAO.getList();
 	}
-	
+	public StudentDTO getDetail(StudentDTO studentDTO) throws Exception{
+		return studentDAO.getDetail(studentDTO);
+	}
+	public int setAdd(StudentDTO studentDTO)throws Exception{
+		return studentDAO.setAdd(studentDTO);
+	}
+	public int setUpdate(StudentDTO studentDTO)throws Exception{
+		return studentDAO.setUpdate(studentDTO);
+	} 
+	public int setDelete(Long num)throws Exception{
+		return studentDAO.setDelete(num);
+	}
 }

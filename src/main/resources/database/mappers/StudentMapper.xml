@@ -5,7 +5,7 @@
   
   <mapper namespace="com.is.main.student.Student.DTO">
   
-  	<select id="getList" resultType="com.is.main.student.Student.DTO">
+  	<select id="getList" resultType="com.is.main.student.StudentDTO">
   		SELECT STUDENTNAME, STUDENTNUM, KOR, ENG, MATH, TOTAL, AVG ORDER BY STUDENTNUM DESC
   	</select>
   

@@ -22,5 +22,8 @@ public class StudentController {
 		return "student/list";
 	}
 	
+	public void getDetail() throws Exception{
+		
+	}
 	
 }
