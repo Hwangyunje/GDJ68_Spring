@@ -21,5 +21,8 @@
 	${member.birth}
 	</p>
 	</div>
+	
+	<a class="btn-primary" href="./memberUpdate">회원수정</a>
+	
 </body>
 </html>

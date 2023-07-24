@@ -13,7 +13,16 @@ public class MemberService {
 	public MemberDTO getLogin (MemberDTO memberDTO) throws Exception{
 		return memberDAO.getLogin(memberDTO);
 	}
-	
+
+	public int setMemberUpdate(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void service() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

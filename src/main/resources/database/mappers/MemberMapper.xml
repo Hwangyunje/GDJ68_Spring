@@ -9,9 +9,18 @@
   		SELET * FROM MEMBER
   		WHERE ID=#{id} AND PW=#{pw}
   	</select>
-  
+     <!--회원수정  -->
+     <update id="setMemberUpdate" parameterType="MemberDTO">
+     	UPDATE MEMBER SET
+     	PW=#{PW},NAME=#{name},EMAIL=#{email},BIRTH=#{birth}
+     	WHERE ID=#{id}
+     </update>
+     
+     
+     
    	<!-- 로그아웃 -->
    	<select id="getLogout" resultType="MemberDTO" parameterType="MemberDTO">
    	
    	</select>
+   	
   </mapper>
