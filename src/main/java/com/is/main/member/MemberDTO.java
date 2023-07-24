@@ -1,5 +1,7 @@
 package com.is.main.member;
 
+import java.sql.Date;
+
 public class MemberDTO {
 	//접근지정자는 private
 	//변수명타입은 Table의컬럼과 동일하게

@@ -18,23 +18,23 @@ public class BankBookDAO {
 	private final String NAMESPACE="com.is.main.bankBook.BankBookDAO.";
 	
 	//List
-	public List<BankBookDTO> getList() throws Exception{
+	public List<BankBookDTOtest> getList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 	
 	//detail
-	public BankBookDTO getDetail (BankBookDTO bankBookDTO) throws Exception{
+	public BankBookDTOtest getDetail (BankBookDTOtest bankBookDTO) throws Exception{
 		
 		return sqlSession.selectOne(NAMESPACE+"getDetail",bankBookDTO);	
 	}
 	
 	//add
-	public int setAdd (BankBookDTO bankBookDTO) throws Exception{
+	public int setAdd (BankBookDTOtest bankBookDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAdd", bankBookDTO);
 	}
 	
 	//update
-	public int setUpdate(BankBookDTO bankBookDTO) throws Exception{
+	public int setUpdate(BankBookDTOtest bankBookDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setUpdate", bankBookDTO);
 	}
 	

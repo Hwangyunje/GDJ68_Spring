@@ -18,13 +18,13 @@ public class BankBookController {
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public String getList(Model model) throws Exception{
-		List<BankBookDTO> ar=bankBookService.getList();
+		List<BankBookDTOtest> ar=bankBookService.getList();
 		model.addAttribute("list",ar);
 		return "bankbook/list";
 	}
 	
 	@RequestMapping(value="detail")
-	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mv)throws Exception{
+	public ModelAndView getDetail(BankBookDTOtest bankBookDTO, ModelAndView mv)throws Exception{
 		
 		bankBookDTO=bankBookService.getDetail(bankBookDTO);
 		System.out.println(bankBookDTO.getBookName());
@@ -40,20 +40,20 @@ public class BankBookController {
 	
 	//db insert
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String setAdd(BankBookDTO bankBookDTO) throws Exception{
+	public String setAdd(BankBookDTOtest bankBookDTO) throws Exception{
 		int result=bankBookService.setAdd(bankBookDTO);
 		return "redirect:./list";
 		
 	}
 	//수정form
 	@RequestMapping(value="update", method = RequestMethod.GET)
-	public void setUpdate (BankBookDTO bankBookDTO, Model model) throws Exception{
+	public void setUpdate (BankBookDTOtest bankBookDTO, Model model) throws Exception{
 		bankBookDTO = bankBookService.getDetail(bankBookDTO);
 		model.addAttribute("dto", bankBookDTO);
 	}
 	//update
 	@RequestMapping(value="update",method = RequestMethod.POST)
-	public String setUpdate(BankBookDTO bankBookDTO) throws Exception{
+	public String setUpdate(BankBookDTOtest bankBookDTO) throws Exception{
 		int result=bankBookService.setUpdate(bankBookDTO);
 		//return "redirect:./list";
 		return "redirect:./detail?bookNum="+bankBookDTO.getBookNum();
