@@ -1,43 +1,55 @@
 package com.is.main.notice;
 
+import java.util.Date;
+
 public class NoticeDTO {
  
 	
-		private int noticeno ;
-		private String noticesubject ;
-		private String noticename ;
-		private Date noticedate ;
-		private int noticehit ;
-		public int getNoticeno() {
-			return noticeno;
+		private Long noticeNo ;
+		private String noticeSubject ;
+		private String noticeName ;
+		private Date noticeDate ;
+		private Long noticeHit ;
+		private String noticeContent;
+		
+		public String getNoticeContents() {
+			return noticeContent;
 		}
-		public void setNoticeno(int noticeno) {
-			this.noticeno = noticeno;
+		public void setNoticeContents(String noticeContents) {
+			this.noticeContent = noticeContents;
 		}
-		public String getNoticesubject() {
-			return noticesubject;
+		public Long getNoticeNo() {
+			return noticeNo;
 		}
-		public void setNoticesubject(String noticesubject) {
-			this.noticesubject = noticesubject;
+		public void setNoticeNo(Long noticeNo) {
+			this.noticeNo = noticeNo;
 		}
-		public String getNoticename() {
-			return noticename;
+		public String getNoticeSubject() {
+			return noticeSubject;
 		}
-		public void setNoticename(String noticename) {
-			this.noticename = noticename;
+		public void setNoticeSubject(String noticeSubject) {
+			this.noticeSubject = noticeSubject;
 		}
-		public date getNoticedate() {
-			return noticedate;
+		public String getNoticeName() {
+			return noticeName;
 		}
-		public void setNoticedate(date noticedate) {
-			this.noticedate = noticedate;
+		public void setNoticeName(String noticeName) {
+			this.noticeName = noticeName;
 		}
-		public int getNoticehit() {
-			return noticehit;
+		public Date getNoticeDate() {
+			return noticeDate;
 		}
-		public void setNoticehit(int noticehit) {
-			this.noticehit = noticehit;
+		public void setNoticeDate(Date noticeDate) {
+			this.noticeDate = noticeDate;
 		}
+		public Long getNoticeHit() {
+			return noticeHit;
+		}
+		public void setNoticeHit(Long noticeHit) {
+			this.noticeHit = noticeHit;
+		}
+		
+		
 		
 		
 }

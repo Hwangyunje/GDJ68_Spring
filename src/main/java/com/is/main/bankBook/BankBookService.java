@@ -11,19 +11,19 @@ public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
-	public List<BankBookDTOtest> getList() throws Exception{
+	public List<BankBookDTO> getList() throws Exception{
 		return bankBookDAO.getList();
 	}
 	
-	public BankBookDTOtest getDetail(BankBookDTOtest bankBookDTO)throws Exception{
+	public BankBookDTO getDetail(BankBookDTO bankBookDTO)throws Exception{
 		return bankBookDAO.getDetail(bankBookDTO);
 	}
 
-	public int setAdd (BankBookDTOtest bankBookDTO) throws Exception{
+	public int setAdd (BankBookDTO bankBookDTO) throws Exception{
 		return bankBookDAO.setAdd(bankBookDTO);
 	}
 	
-	public int setUpdate(BankBookDTOtest bankBookDTO)throws Exception{
+	public int setUpdate(BankBookDTO bankBookDTO)throws Exception{
 		return bankBookDAO.setUpdate(bankBookDTO);
 	}
 	
