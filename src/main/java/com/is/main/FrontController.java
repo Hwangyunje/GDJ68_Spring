@@ -4,12 +4,12 @@ package com.is.main;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.is.main.bankBook.BankBookService;
 
 @Controller
-@RequestMapping("/bankbook/*")
 public class FrontController {
+	//Add Board
 	//Add_mybatis
+
 	//home
 	// /주소가왔을때 실행,index.jsp
 	
