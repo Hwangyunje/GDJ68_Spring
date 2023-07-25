@@ -9,7 +9,7 @@ import com.is.main.bankBook.BankBookService;
 @Controller
 @RequestMapping("/bankbook/*")
 public class FrontController {
-	
+	//Add_mybatis
 	//home
 	// /주소가왔을때 실행,index.jsp
 	
