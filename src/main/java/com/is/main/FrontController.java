@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FrontController {
+	//Add Board
 	
 	//home
 	// /주소가왔을때 실행,index.jsp
