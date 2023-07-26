@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.is.main.util.Pager;
+
 @Repository //해당클래스의 객체를 생성
 public class BankBookDAO {
 	
@@ -18,9 +20,14 @@ public class BankBookDAO {
 		
 	private final String NAMESPACE="com.is.main.bankBook.BankBookDAO.";
 	
+	//total
+	public Long getTotal() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotal");
+	}
+	
 	//List
-		public List<BankBookDTO> getList(Map<String, Integer> map) throws Exception {
-			return sqlSession.selectList(NAMESPACE+"getList", map);
+		public List<BankBookDTO> getList(Pager pager) throws Exception {
+			return sqlSession.selectList(NAMESPACE+"getList", pager);
 		}
 	//detail
 	public BankBookDTO getDetail (BankBookDTO bankBookDTO) throws Exception{
