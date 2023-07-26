@@ -6,11 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href=".../../../resources/css/index.css">
- <c:import url="./temp/bootStrap.jsp"></c:import>
- <c:import url="./temp/header.jsp"></c:import> 
+<c:import url="../temp/bootStrap.jsp"></c:import>
 </head>
 <body>
+	
+	<c:import url="../temp/header.jsp"></c:import>
+	
 
 	<section class="container mt-5">	
 	<h1 class="mb-4 text-center">BankBook List</h1>

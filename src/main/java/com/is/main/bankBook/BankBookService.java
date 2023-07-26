@@ -1,6 +1,8 @@
 package com.is.main.bankBook;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,20 @@ public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
-	public List<BankBookDTO> getList() throws Exception{
-		return bankBookDAO.getList();
+	public List<BankBookDTO> getList(Integer page) throws Exception{
+		Map<String, Integer>map=new HashMap<String, Integer>();
+		//page   startRow    lastRow
+		// 1  		1			10
+		//2			11			20
+		//3			21			30
+		//...
+		int count=10;
+		int startRow=(page-1)*count+1;
+		int lastRow=page*count;
+		
+		map.put("startRow", startRow);
+		map.put("lastRow", lastRow);
+		return bankBookDAO.getList(map);
 	}
 	
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO)throws Exception{

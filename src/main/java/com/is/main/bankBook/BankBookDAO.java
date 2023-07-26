@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,9 @@ public class BankBookDAO {
 	private final String NAMESPACE="com.is.main.bankBook.BankBookDAO.";
 	
 	//List
-	public List<BankBookDTO> getList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getList");
-	}
-	
+		public List<BankBookDTO> getList(Map<String, Integer> map) throws Exception {
+			return sqlSession.selectList(NAMESPACE+"getList", map);
+		}
 	//detail
 	public BankBookDTO getDetail (BankBookDTO bankBookDTO) throws Exception{
 		

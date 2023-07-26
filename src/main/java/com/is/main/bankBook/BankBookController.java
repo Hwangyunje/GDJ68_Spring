@@ -17,8 +17,8 @@ public class BankBookController {
 	private BankBookService bankBookService;
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String getList(Model model) throws Exception{
-		List<BankBookDTO> ar=bankBookService.getList();
+	public String getList(Integer page, Model model) throws Exception{
+		List<BankBookDTO> ar=bankBookService.getList(page);
 		model.addAttribute("list",ar);
 		return "bankbook/list";
 	}

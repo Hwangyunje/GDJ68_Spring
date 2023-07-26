@@ -5,9 +5,18 @@
   
   <mapper namespace="com.is.main.bankBook.BankBookDAO">
  	
- 	<select id="getList" resultType="BankBookDTO">
- 		SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
- 	</select>
+ 	<select id="getList" parameterType="java.util.Map" resultType="BankBookDTO">
+ 	SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE, BOOKCONTENTS FROM	
+		(SELECT ROWNUM R, B.*FROM
+			(
+			SELECT *FROM BANKBOOK
+			WHERE BOOKNUM>0
+			ORDER BY BOOKNUM DESC
+			) B
+		)
+	WHERE
+			R BETWEEN #{startRow} AND #{lastRow}
+	</select>
  	
  	<select id="getDetail" resultType="BankBookDTO" parameterType="BankBookDTO">
  		SELECT *FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
