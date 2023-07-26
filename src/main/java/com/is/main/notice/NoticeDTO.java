@@ -12,11 +12,11 @@ public class NoticeDTO {
 		private Long noticeHit ;
 		private String noticeContent;
 		
-		public String getNoticeContents() {
+		public String getNoticeContent() {
 			return noticeContent;
 		}
-		public void setNoticeContents(String noticeContents) {
-			this.noticeContent = noticeContents;
+		public void setNoticeContent(String noticeContent) {
+			this.noticeContent = noticeContent;
 		}
 		public Long getNoticeNo() {
 			return noticeNo;

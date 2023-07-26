@@ -15,8 +15,8 @@
 	<form action="./update" method="post">
 		<input type="hidden" name="noticeNo" value="${dto.noticeNo}">
 		제목<input type="text" name="noticeSubject" value="${dto.noticeSubject}"><br>
-		내용 <textarea rows="" cols="" name="noticeContent">${dto.noticeContent}</textarea>
 		작성자<input type="text" name="noticeName" value="${dto.noticeName}"><br>
+		내용 <textarea rows="" cols="" name="noticeContent">${dto.noticeContent}</textarea>
 		
 		
 		<button type="submit">수정</button>

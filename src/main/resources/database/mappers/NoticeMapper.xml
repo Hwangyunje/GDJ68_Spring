@@ -5,23 +5,36 @@
   
   <mapper namespace="com.is.main.notice.NoticeDAO">
  	
- 	<select id="getList" resultType="NoticeDTO">
- 		SELECT NOTICENO, NOTICESUBJECT, NOTICENAME, NOTICEDATE,NOTICEHIT FROM NOTICE ORDER BY NOTICENO DESC
+ 	 	<select id="getTotal" resultType="Long">
+		SELECT COUNT(NOTICENO) FROM NOTICE 	
  	</select>
+ 	
+ <select id="getList" parameterType="com.is.main.util.Pager" resultType="NoticeDTO">
+ 	SELECT NOTICENO, NOTICESUBJECT, NOTICENAME, NOTICEDATE, NOTICEHIT, NOTICECONTENTS FROM	
+		(SELECT ROWNUM R, B.*FROM
+			(
+			SELECT *FROM NOTICE
+			WHERE NOTICENO>0
+			ORDER BY NOTICENO DESC
+			) B
+		)
+	WHERE
+			R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+ 	 <select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
+ 		SELECT * FROM NOTICE WHERE NOTICENO=#{noticeNo}
+ 	</select>
+ 	
  	<insert id="setAdd" parameterType="NoticeDTO">
  		INSERT INTO NOTICE 
  		VALUES (BANK_SEQ.NEXTVAL, #{noticeSubject},#{noticeName},SYSDATE,0,#{noticeContent})
  	 </insert>
  	 	
- 	 <select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
- 		SELECT * FROM NOTICE WHERE NOTICENO=#{noticeNo}
- 	</select>
- 	
  	<update id="setUpdate" parameterType="NoticeDTO">
  		UPDATE NOTICE SET
  		NOTICESUBJECT=#{noticeSubject},
- 		NOTICECONTENTS=#{noticeContent},
- 		NOTICENAME=#{noticeName}
+ 		NOTICENAME=#{noticeName},
+ 		NOTICECONTENTS=#{noticeContent}
  		WHERE NOTICENO=#{noticeNo}
  	</update>
  	 	<delete id="setDelete" parameterType="Long">
