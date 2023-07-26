@@ -15,7 +15,7 @@
  	
  	<insert id="setAdd" parameterType="BankBookDTO">
  		INSERT INTO BANKBOOK 
- 		VALUES (BANK_SEQ.NEXTVAL, #{bookName},#{contents},#{bookRate},#{bookSale})
+ 		VALUES (BANK_SEQ.NEXTVAL, #{bookName},#{bookRate},#{bookSale},#{bookContents})
  	</insert>
  	<update id="setUpdate" parameterType="BankBookDTO">
  		UPDATE BANKBOOK SET
