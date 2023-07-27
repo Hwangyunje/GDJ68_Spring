@@ -1,13 +1,12 @@
 package com.is.main.bankBook;
 
 public class BankBookDTO {
-
+	
 	private Long bookNum;
 	private String bookName;
 	private String bookContents;
 	private Double bookRate;
 	private Integer bookSale;
-	
 	
 	public Long getBookNum() {
 		return bookNum;
@@ -39,4 +38,7 @@ public class BankBookDTO {
 	public void setBookSale(Integer bookSale) {
 		this.bookSale = bookSale;
 	}
+	
+	
+
 }

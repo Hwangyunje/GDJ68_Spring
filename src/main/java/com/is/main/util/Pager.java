@@ -2,6 +2,10 @@ package com.is.main.util;
 
 
 public class Pager {
+	//검색
+	private String kind;
+	private String search;
+	
 	private Long startRow;
 	private Long lastRow;
 	
@@ -30,7 +34,7 @@ public class Pager {
 		//91-99   -> 10
 		
 		//1. 전체 갯수로 전체 페이지 수 구하기
-		this.totalPage= total/ this.getPerPage();
+		this.totalPage= total/ this.getPerPage();//13
 		if(total%this.getPerPage() != 0) {
 			this.totalPage++;
 		}
@@ -82,7 +86,7 @@ public class Pager {
 	
 	public void makeRowNum() {
 		this.startRow=(this.getPage()-1)*this.getPerPage()+1;
-		this.lastRow=this.getPage()*this.getPerPage();
+		this.lastRow=this.page*this.getPerPage();
 	}
 
 	
@@ -193,6 +197,31 @@ public class Pager {
 	public void setNext(boolean next) {
 		this.next = next;
 	}
+
+
+	public String getKind() {
+		return kind;
+	}
+
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+
+	public String getSearch() {
+		if(this.search == null) {
+			this.search="";
+		}
+		
+		return search;
+	}
+
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 	
 	
 	

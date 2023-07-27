@@ -6,16 +6,21 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MemberDAO {
-
+	
 	@Autowired
-	private SqlSession sqlSession;	
+	private SqlSession sqlSession;
 	private final String NAMESPACE="com.is.main.member.MemberDAO.";
 	
-	public MemberDTO getLogin (MemberDTO memberDTO) throws Exception{
+	public int setJoin(MemberDTO memberDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
+	}
+	
+	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
 	}
-	public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
-		return sqlSession.update(NAMESPACE+"setMemberUpdate",memberDTO);
+	
+	public int setMemberUpdate(MemberDTO memberDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
 	}
-}
 
+}

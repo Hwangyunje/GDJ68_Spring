@@ -22,7 +22,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@RequestMapping(value="list")
-	public String getNoList(Pager pager,Model model)throws Exception{
+	public String getNoList(Pager pager, String kind, String search,Model model)throws Exception{
 		List<NoticeDTO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager",pager);

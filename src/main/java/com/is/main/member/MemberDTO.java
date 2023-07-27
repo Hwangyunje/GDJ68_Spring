@@ -14,6 +14,7 @@ public class MemberDTO {
 	private Date birth;
 	
 	
+	
 	public String getId() {
 		return id;
 	}
