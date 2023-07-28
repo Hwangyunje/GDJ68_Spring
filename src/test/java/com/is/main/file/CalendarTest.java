@@ -3,14 +3,24 @@ package com.is.main.file;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import org.junit.Test;
 
 import com.is.main.Mytest;
 
 public class CalendarTest  extends Mytest{
-
 	@Test
+	public void Test2() {
+		Calendar ca = Calendar.getInstance();
+		Random random = new Random(ca.getTimeInMillis());
+		random.nextInt();
+		random.nextInt(5);
+		
+	}
+	
+	
+	//@Test
 	public void test() {
 		//1/1000
 		

@@ -12,13 +12,16 @@
 	
 	<div>
 	<p>
-	${member.id}:${sessionScope.member.name}
+		<img alt="" src="../resources/upload/member/${member.memberFIleDTO.fileName}">
+	</p>
+	<p>
+		${member.id}:${sessionScope.member.name}
 	</p>
 	<p>
 		${member.email}
 	</p>
 	<p>
-	${member.birth}
+		${member.birth}
 	</p>
 	</div>
 	

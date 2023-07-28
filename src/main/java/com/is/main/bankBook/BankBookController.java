@@ -2,12 +2,17 @@ package com.is.main.bankBook;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.is.main.util.Pager;
@@ -19,23 +24,25 @@ public class BankBookController {
 	@Autowired
 	private BankBookService bankBookService;
 	
-	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String getList(Pager pager,String kind, String search, Model model) throws Exception{
-		List<BankBookDTO> ar=bankBookService.getList(pager);
-		model.addAttribute("list",ar);
-		model.addAttribute("pager",pager);
+	@RequestMapping(value="list", method = RequestMethod.GET)
+	public String getList(Pager pager, Model model)throws Exception{
+		List<BankBookDTO> ar = bankBookService.getList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		return "bankbook/list";
 	}
 	
-	@RequestMapping(value="detail")
+	@RequestMapping(value = "detail")
 	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mv)throws Exception{
 		
-		bankBookDTO=bankBookService.getDetail(bankBookDTO);
+		//bankBookDTO.setBookNum(Long.parseLong(requestMapping.getParameter("bookNum"));
+		bankBookDTO = bankBookService.getDetail(bankBookDTO);
 		System.out.println(bankBookDTO.getBookName());
 		mv.addObject("dto", bankBookDTO);
 		mv.setViewName("bankbook/detail");
 		return mv;
-}
+	}
+	
 	//form
 	@RequestMapping(value="add", method = RequestMethod.GET)
 	public void setAdd()throws Exception{
@@ -43,34 +50,39 @@ public class BankBookController {
 	}
 	
 	//db insert
-	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String setAdd(BankBookDTO bankBookDTO) throws Exception{
-		int result=bankBookService.setAdd(bankBookDTO);
+	@RequestMapping(value="add", method = RequestMethod.POST)
+	public String setAdd(BankBookDTO bankBookDTO, MultipartFile [] photos, HttpSession session)throws Exception{
+		int result = bankBookService.setAdd(bankBookDTO,photos ,session);
 		return "redirect:./list";
-		
 	}
+	
 	//수정form
-	@RequestMapping(value="update", method = RequestMethod.GET)
-	public void setUpdate (BankBookDTO bankBookDTO, Model model) throws Exception{
-		bankBookDTO = bankBookService.getDetail(bankBookDTO);
-		model.addAttribute("dto", bankBookDTO);
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public ModelAndView setUpdate(BankBookDTO bankBookDTO,Model model)throws Exception{
+//		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+//		model.addAttribute("dto", bankBookDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("bankBook/update");
+		mv.addObject("dto", bankBookDTO);
+		return mv;
 	}
+	
 	//update
-	@RequestMapping(value="update",method = RequestMethod.POST)
-	public String setUpdate(BankBookDTO bankBookDTO) throws Exception{
-		int result=bankBookService.setUpdate(bankBookDTO);
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String setUpdate(BankBookDTO bankBookDTO)throws Exception{
+		int result = bankBookService.setUpdate(bankBookDTO);
 		//return "redirect:./list";
 		return "redirect:./detail?bookNum="+bankBookDTO.getBookNum();
 	}
 	
 	
-	@RequestMapping(value="delete",method = RequestMethod.GET)
-	public String setDelete (Long num) throws Exception{
-		int result=bankBookService.setDelete(num);
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String setDelete(@RequestParam(name = "bookNum") Long num)throws Exception{
+		int result = bankBookService.setDelete(num);
+		
 		return "redirect:./list";
 	}
 	
 	
-	
-	
+
 }

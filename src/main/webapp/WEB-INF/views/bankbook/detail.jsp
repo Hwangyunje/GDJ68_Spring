@@ -28,6 +28,9 @@
 		</c:otherwise>
 	</c:choose>
 	
+	<c:forEach items="${dto.fileDTOs}" var="f">
+		<img alt="" src="/resources/upload/bankbook/${f.fileName}">
+	</c:forEach>
 
 	<%--
 	 <c:if test="${dto.bookSale eq 1}">
