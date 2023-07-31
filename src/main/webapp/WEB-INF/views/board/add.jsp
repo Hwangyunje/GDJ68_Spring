@@ -29,6 +29,27 @@
 		</div>
 		
 	
+		<div class="mb-3">
+	  <label for="pic" class="form-label">사진첨부</label>
+	  <input type="file" name="photos" class="form-control" id="pic">
+	</div>
+	<div class="mb-3">
+	  <label for="pic" class="form-label">사진첨부</label>
+	  <input type="file" name="photos" class="form-control" id="pic">
+	</div>
+	<div class="mb-3">
+	  <label for="pic" class="form-label">사진첨부</label>
+	  <input type="file" name="photos" class="form-control" id="pic">
+	</div>
+		<div class="mb-3">
+	  <label for="pic" class="form-label">사진첨부</label>
+	  <input type="file" name="photos" class="form-control" id="pic">
+	</div>
+	<div class="mb-3">
+	  <label for="pic" class="form-label">사진첨부</label>
+	  <input type="file" name="photos" class="form-control" id="pic">
+	</div>
+
 		
 		
 		<div class="my-3">

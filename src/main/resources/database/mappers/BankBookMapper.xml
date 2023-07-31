@@ -17,12 +17,12 @@
 		</choose>
   	</sql>
   
-	<select id="getTotal" parameterType="com.iu.main.util.Pager" resultType="Long">
+	<select id="getTotal" parameterType="com.is.main.util.Pager" resultType="Long">
 		SELECT COUNT(BOOKNUM) FROM BANKBOOK
 		<include refid="searchSql"></include>
 	</select>
 	
-	<select id="getList" parameterType="com.iu.main.util.Pager" resultType="BankBookDTO" >
+	<select id="getList" parameterType="com.is.main.util.Pager" resultType="BankBookDTO" >
 		SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM	
 			(SELECT ROWNUM R, B.* FROM
 				(

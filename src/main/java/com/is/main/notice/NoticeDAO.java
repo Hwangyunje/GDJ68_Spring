@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.is.main.bankBook.BankBookDTO;
+import com.is.main.bankBook.BankBookFileDTO;
 import com.is.main.notice.NoticeDTO;
 import com.is.main.util.Pager;
 @Repository
@@ -28,6 +29,9 @@ public class NoticeDAO {
 	
 		public int setAdd (NoticeDTO noticeDTO) throws Exception{
 			return sqlSession.insert(NAMESPACE+"setAdd", noticeDTO);
+		}
+		public int setFileAdd(NoticeFileDTO noticeFileDTO)throws Exception{
+			return sqlSession.insert(NAMESPACE+"setFileAdd", noticeFileDTO);
 		}
 
 		

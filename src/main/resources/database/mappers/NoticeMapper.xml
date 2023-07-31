@@ -46,7 +46,10 @@
  		INSERT INTO NOTICE 
  		VALUES (BANK_SEQ.NEXTVAL, #{noticeSubject},#{noticeName},SYSDATE,0,#{noticeContent})
  	 </insert>
- 	 	
+ 	 <insert id="setFileAdd" parameterType="NoticeFileDTO">
+		INSERT INTO BANKFILE (FILENUM,NOTICENO, FILENAME, ORIGINALNAME)
+		VALUES (BANK_SEQ.NEXTVAL, #{noticeNo}, #{fileName}, #{originalName})
+	</insert>
  	<update id="setUpdate" parameterType="NoticeDTO">
  		UPDATE NOTICE SET
  		NOTICESUBJECT=#{noticeSubject},
