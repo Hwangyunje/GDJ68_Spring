@@ -18,7 +18,7 @@ public class BankBookDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private final String NAMESPACE="com.iu.main.bankBook.BankBookDAO.";
+	private final String NAMESPACE="com.is.main.bankBook.BankBookDAO.";
 	
 	//total
 	public Long getTotal(Pager pager)throws Exception{
