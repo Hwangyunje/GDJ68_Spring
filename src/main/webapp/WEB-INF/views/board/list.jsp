@@ -25,11 +25,11 @@
 			<tbody>
 				<c:forEach items="${requestScope.list}" var="d" varStatus="i"> 
 					<tr>
-						<td><a href="./detail?noticeNo=${d.noticeNo}">${d.noticeNo}</a></td>
-						<td><a href="./detail?noticeNo=${d.noticeNo}">${d.noticeSubject}</a></td>
-						<td>${d.noticeName}</td>
-						<td>${d.noticeDate}</td>
-						<td>${d.noticeHit}</td>
+						<td><a href="./detail?noticeNo=${d.num}">${d.num}</a></td>
+						<td><a href="./detail?noticeNo=${d.num}">${d.Subject}</a></td>
+						<td>${d.Name}</td>
+						<td>${d.createDate}</td>
+						<td>${d.Hit}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

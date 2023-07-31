@@ -19,11 +19,11 @@
 			<tbody>
 				<c:forEach items="${requestScope.list}" var="d" varStatus="i"> 
 					<tr>
-						<td><a href="./detail?qnaNum=${d.qnaNum}">${d.qnaNum}</a></td>
-						<td><a href="./detail?qnaNum=${d.qnaNum}">${d.qnaSubject}</a></td>
-						<td>${d.qnaName}</td>
-						<td>${d.qnaDate}</td>
-						<td>${d.qnaHit}</td>
+						<td><a href="./detail?qnaNum=${d.Num}">${d.Num}</a></td>
+						<td><a href="./detail?qnaNum=${d.Num}">${d.Subject}</a></td>
+						<td>${d.Name}</td>
+						<td>${d.Date}</td>
+						<td>${d.Hit}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

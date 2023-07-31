@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.is.main.qnaBoard.QnaBoardDAO">
+  	<sql id="searchSql">
+  		WHERE QnaNum>0
+  		
+  		<choose>
+  			<when test="kind=='name'">
+  				AND QNANAME LIKE '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  				AND QNACONTENTS LIKE '%'||#{search}||'%'
+  			</otherwise>
+  		</choose>
+  	</sql>
+  
+  	<select id="getTotal" parameterType="com.is.main.util.Pager" resultType="QnaDTO">
+  		SELECT COUNT(QNANUM) FROM QNABOARD
+  		<include refid="searchSql"></include>
+  	</select>
+  	
+  	<select id="getList" parameterType="com.is.main.util.Pager" resultType="QnaDTO" >
+		SELECT QNANUM, QNANAME, QNASUBJECT, QNACONTENTS, QNADATE, QNAHIT, REF, STEP, DEPTH FROM	
+			(SELECT ROWNUM R, Q.* FROM
+				(
+					SELECT * FROM QNABOARD
+					<include refid="searchSql" />
+						   
+					ORDER BY QNANUM DESC
+				) Q
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+
+<resultMap type="NoticeDTO" id="getSelectResult">
+	<id column="NOTICENO" property="num"/>
+	<result column="NOTICESUBJECT" property="subject"/>
+	<result column="NOTICENAME" property="name"/>
+	<result column="NOTICECONTENTS" property="contents"/>
+	<result column="NOTICEDATE" property="createDate"/>
+	<result column="NOTICEHIT" property="hit"/>
+	
+</resultMap>
+
+<insert id="setAdd" parameterType="QnaDTO">
+	<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+		SELECT QNABOARD_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+
+	INSERT INTO QNABOARD (QNANUM,QNANAME.QNASUBJECT,QNACONTENTS,QNADATE,QNAHIT,REF,STEP,DEPTH)
+	VALUES (#{num},#{name},#{subject},#{contents},sysdate,0,0,0,0)
+</insert>
+
+<select id="getDetail" resultMap="getDetailResult"  parameterType="QnaDTO">
+		SELECT Q.*, NF.* 
+		FROM QNABOARD Q
+			 LEFT JOIN
+			 NOTICEFILE NF
+			 ON(Q.QNABOARDNUM=NF.NOTICEFILENUM)
+		WHERE Q.QNABOARDNUM=#{num}
+	</select>
+
+</mapper>

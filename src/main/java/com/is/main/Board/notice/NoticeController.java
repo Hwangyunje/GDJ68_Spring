@@ -1,4 +1,4 @@
-package com.is.main.notice;
+package com.is.main.Board.notice;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.is.main.notice.NoticeDTO;
+import com.is.main.Board.notice.NoticeDTO;
 import com.is.main.util.Pager;
 
 
@@ -23,12 +23,13 @@ public class NoticeController {
 	
 	@RequestMapping(value="list")
 	public String getNoList(Pager pager, String kind, String search,Model model)throws Exception{
-		List<NoticeDTO> ar = noticeService.getList(pager);
+		List<BoardDTO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager",pager);
 		return "board/list";
 	}
 	
+
 	//form
 	@RequestMapping(value="add", method = RequestMethod.GET)
 	public String setAdd() throws Exception{
@@ -45,7 +46,7 @@ public class NoticeController {
 	
 	@RequestMapping(value="detail") 
 	public ModelAndView getDetail(NoticeDTO noticeDTO, ModelAndView mv)throws Exception{
-		noticeDTO=noticeService.getDetail(noticeDTO);
+		BoardDTO boardDTO=noticeService.getDetail(noticeDTO);
 		mv.addObject("dto", noticeDTO); 
 		mv.setViewName("board/detail");
 		return mv;
@@ -62,7 +63,7 @@ public class NoticeController {
 	public String setUpdate(NoticeDTO noticeDTO) throws Exception{
 		int result=noticeService.setUpdate(noticeDTO);
 		//return "redirect:./list";
-		return "redirect:./detail?noticeNo="+noticeDTO.getNoticeNo();	
+		return "redirect:./detail?noticeNo="+noticeDTO.getNum();	
 	}
 	@RequestMapping(value="delete",method = RequestMethod.GET)
 	public String setDelete (Long No) throws Exception{

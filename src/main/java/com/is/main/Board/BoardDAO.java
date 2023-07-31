@@ -1,0 +1,27 @@
+package com.is.main.Board;
+
+import java.util.List;
+
+import com.is.main.util.Pager;
+
+public interface BoardDAO {
+	
+	//List
+	public List<BoardDTO> gerList(Pager pager)throws Exception;
+	
+	//Detail
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception;
+	//Add
+	public int setAdd(BoardDTO boardDTO) throws Exception;
+		
+	
+	
+	//Update
+	public int setUpdate (BoardDTO boardDTO) throws Exception;
+	//Delete
+	public int setDelete(BoardDTO boardDTO)throws Exception;
+	//totalCount
+	public Long getTotal(Pager pager) throws Exception;
+	//조회수업데이트
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception;
+}

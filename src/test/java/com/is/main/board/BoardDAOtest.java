@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.is.main.Mytest;
 import com.is.main.bankBook.BankBookDAO;
-import com.is.main.notice.NoticeDTO;
 
 public class BoardDAOtest extends Mytest {
 	@Autowired
