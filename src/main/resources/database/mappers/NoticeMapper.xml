@@ -4,60 +4,92 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.is.main.board.notice.NoticeDAO">
- 		<sql id="searchSql">
- 				WHERE NOTICENO>0 
-				AND
-				<choose>
-					<when test="kind == 'name'">
-						NOTICESUBJECT LIKE '%||#{search}||%'
-					</when>
-					<otherwise>
-						NOTICECONTENTS LIKE '%||#{search}||%'	
-					</otherwise>
-				</choose>
- 		
- 		</sql>
- 	
- 	
- 	 	<select id="getTotal" parameterType="com.is.main.util.Pager" resultType="Long">
-		SELECT COUNT(NOTICENO) FROM NOTICE 	
-		<include refid="searchSql"></include>
-				  	
- 	
- 	</select>
- 	
- <select id="getList" parameterType="com.is.main.util.Pager" resultType="NoticeDTO">
- 	SELECT NOTICENO, NOTICESUBJECT, NOTICENAME, NOTICEDATE, NOTICEHIT, NOTICECONTENTS FROM	
-		(SELECT ROWNUM R, B.*FROM
-			(
-			SELECT *FROM NOTICE
-			<include refid="searchSql" />
-			ORDER BY NOTICENO DESC
-			) B
-		)
-	WHERE
+<select id="getList" resultMap="getSelectResult" parameterType="Pager">
+  		SELECT 
+  			*
+		FROM(
+			SELECT 
+				ROWNUM R, 
+				B.* 
+			FROM(
+				SELECT
+					* 
+				FROM 
+					NOTICE
+				WHERE 
+					NOTICENO>0 
+				ORDER BY 
+					NOTICENO DESC
+				) B
+			)
+		WHERE
 			R BETWEEN #{startRow} AND #{lastRow}
-	</select>
- 	 <select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
- 		SELECT * FROM NOTICE WHERE NOTICENO=#{noticeNo}
- 	</select>
- 	
- 	<insert id="setAdd" parameterType="NoticeDTO">
- 		INSERT INTO NOTICE 
- 		VALUES (BANK_SEQ.NEXTVAL, #{noticeSubject},#{noticeName},SYSDATE,0,#{noticeContent})
- 	 </insert>
- 	 <insert id="setFileAdd" parameterType="NoticeFileDTO">
-		INSERT INTO BANKFILE (FILENUM,NOTICENO, FILENAME, ORIGINALNAME)
-		VALUES (BANK_SEQ.NEXTVAL, #{noticeNo}, #{fileName}, #{originalName})
-	</insert>
- 	<update id="setUpdate" parameterType="NoticeDTO">
- 		UPDATE NOTICE SET
- 		NOTICESUBJECT=#{noticeSubject},
- 		NOTICENAME=#{noticeName},
- 		NOTICECONTENTS=#{noticeContent}
- 		WHERE NOTICENO=#{noticeNo}
- 	</update>
- 	 	<delete id="setDelete" parameterType="Long">
- 		DELETE NOTICE WHERE NOTICENO=#{No}
- 	</delete>
- 	  </mapper>
+  	</select>
+  	
+  	<resultMap type="NoticeDTO" id="getSelectResult">
+  		<id column="NOTICENO" property="num"/>
+  		<result column="NOTICESUBJECT" property="subject"/>
+  		<result column="NOTICENAME" property="name"/>
+  		<result column="NOTICECONTENTS" property="contents"/>
+  		<result column="NOTICEDATE" property="createDate"/>
+  		<result column="NOTICEHIT" property="hit"/>
+  		
+  	</resultMap>
+  	
+  	
+  	<select id="getTotal" resultType="Long">
+  		SELECT COUNT(NOTICENO) FROM NOTICE
+  	</select>
+  	
+  	<insert id="setAdd" parameterType="NoticeDTO">
+  		INSERT 
+  		INTO 
+  			NOTICE 
+  		VALUES 
+  			(
+  				NOTICE_SEQ.NEXTVAL, 
+  				#{noticeSubject}, 
+  				#{noticeName}, 
+  				SYSDATE, 
+  				0, 
+  				#{noticeContents}
+  			)
+  	</insert>
+  	
+  	<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">  
+  		SELECT 
+  			* 
+  		FROM
+  			NOTICE
+  		WHERE
+  			NOTICENO=#{noticeNo}
+  	</select>
+  	
+  	<delete id="setDelete" parameterType="NoticeDTO">
+  		DELETE 
+  			NOTICE 
+  		WHERE 
+  			NOTICENO=#{noticeNo}
+  	</delete>
+  	
+  	<update id="setUpdate" parameterType="NoticeDTO">
+  		UPDATE 
+  			NOTICE
+  		SET 
+  			NOTICESUBJECT=#{noticeSubject},
+  			NOTICECONTENTS=#{noticeContents}
+  		WHERE
+  			NOTICENO=#{noticeNo}
+  	</update>
+  	
+  	<update id="setHitCount">
+		UPDATE
+			NOTICE
+		SET
+			NOTICEHIT = NOTICEHIT + 1
+		WHERE
+			NOTICENO = #{noticeNo}
+	</update>
+
+
+  </mapper>

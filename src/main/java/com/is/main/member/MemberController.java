@@ -20,7 +20,7 @@ public class MemberController {
 		
 	}
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String setJoin(MemberDTO memberDTO, MultipartFile pic,HttpSession session)throws Exception{
+	public String setJoin(MemberDTO memberDTO, MultipartFile pic, HttpSession session)throws Exception{
 		int result = memberService.setJoin(memberDTO, pic, session);
 		System.out.println(pic.getName());
 		System.out.println(pic.getOriginalFilename());

@@ -10,15 +10,21 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.is.main.Board.BoardDTO;
 import com.is.main.Board.BoardService;
-import com.is.main.Board.notice.NoticeDTO;
+import com.is.main.Board.notice.NoticeFileDTO;
 import com.is.main.util.FileManager;
 import com.is.main.util.Pager;
+
 @Service
-public class QnaService implements BoardService {
+public class QnaService implements BoardService{
 	@Autowired
 	private QnaDAO qnaDAO;
+	
+	@Autowired
+	private FileManager fileManager;
+	
+
 	@Override
-	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		pager.makeRowNum();
 		pager.makePageNum(qnaDAO.getTotal(pager));
@@ -26,15 +32,31 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile multipartFile, HttpSession sesstion) throws Exception {
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		System.out.println(boardDTO.getNum());
+		return qnaDAO.getDetail(boardDTO);
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		String path="/resources/upload/notice/";
+		
+		int result = qnaDAO.setAdd(boardDTO);
+		
+		for(MultipartFile file:files) {
+			if(!file.isEmpty()) {
+				String fileName=fileManager.fileSave(path, session, file);
+				QnaFileDTO qnaFileDTO = new QnaFileDTO();
+				qnaFileDTO.setQnaNum(boardDTO.getNum());
+				qnaFileDTO.setFileName(fileName);
+				qnaFileDTO.setOriginalName(file.getOriginalFilename());
+				//result=qnaDAO.setFileAdd(noticeFileDTO);
+			}
+		}
+		
+		
+		return result;
 	}
 
 	@Override
@@ -42,20 +64,30 @@ public class QnaService implements BoardService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Autowired
-	private QnaBoardDAO qnaBoardDAO;
-	@Autowired
-	private FileManager fileMnager;
-
-	public List<BoardDTO> getList(Pager pager)throws Exception{
+	
+	public int setReplyAdd(QnaDTO qnaDTO, MultipartFile [] files, HttpSession session) throws Exception{
+		BoardDTO parentDTO = new BoardDTO();
+		parentDTO.setNum(qnaDTO.getNum());
 		
-		pager.makeRowNum();
-		pager.makePageNum(qnaDAO.getTotal(pager));
+		parentDTO = qnaDAO.getDetail(parentDTO);
+		QnaDTO p = (QnaDTO)parentDTO;
+		qnaDTO.setRef(p.getRef());
+		qnaDTO.setStep(p.getStep()+1);
+		qnaDTO.setDepth(p.getDepth()+1);
 		
-		return qnaDAO.gerList(pager);
+		int result = qnaDAO.setStepUpdate(p);
+		
+		result = qnaDAO.setReplyAdd(qnaDTO);
+		System.out.println(result);
+		return result;
+		//file저장
 	}
-	public NoticeDTO getDetail(QnaDTO qnaDTO)throws Exception{
-		return qnaDAO.getDetail(qnaDTO);
+	public int setUpdate(QnaDTO qnaDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.setUpdate(qnaDTO);
 	}
+	public int setDelete(QnaDTO qnaDTO)throws Exception{
+		return qnaDAO.setDelete(qnaDTO);
+	}
+
 }

@@ -22,7 +22,7 @@
 				          <a class="nav-link" href="/notice/list">Notice</a>
 				        </li>
 				        <li class="nav-item">
-				          <a class="nav-link" href="/qnaBoard/list">Qna</a>
+				          <a class="nav-link" href="/qna/list">Qna</a>
 				        </li>
 				        <li class="nav-item dropdown">
 				          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
