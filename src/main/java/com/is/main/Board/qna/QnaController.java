@@ -83,7 +83,7 @@ public class QnaController {
 		return "redirect:./detail?qnaNum="+qnaDTO.getNum();
 	}
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String setDelete(@RequestParam(name = "setDelete") Long num)throws Exception{
+	public String setDelete(@RequestParam(name = "setDelete") BoardDTO num)throws Exception{
 		int result = qnaService.setDelete(num);
 		
 		return "redirect:./list";

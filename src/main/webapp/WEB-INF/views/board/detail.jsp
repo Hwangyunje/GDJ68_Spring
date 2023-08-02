@@ -49,6 +49,8 @@
 			</c:if>
 			<a class="btn btn-outline-primary" for="btn-check-outlined" href="./update?num=${dto.num}">수정</a>
 			<a class="btn btn-outline-primary" for="btn-check-outlined" href="./delete?num=${dto.num}">삭제</a>
+			<button id="del" a class="btn btn-outline-primary" for="btn-check-outlined" id="parameterName" data-delete-num="${dto.num}">삭제</button>
+			<script src="../resources/js/delete.js"></script>
 		</form>
 		
 </section>

@@ -9,7 +9,8 @@ public class BankBookDTO {
 	private String bookContents;
 	private Double bookRate;
 	private Integer bookSale;
-	private List<BankBookFileDTO>fileDTOs;
+	private List<BankBookFileDTO> fileDTOs;
+	
 	
 	
 	public List<BankBookFileDTO> getFileDTOs() {

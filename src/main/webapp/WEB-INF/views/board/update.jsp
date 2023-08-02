@@ -16,7 +16,11 @@
 		작성자<input type="text" name="name" value="${dto.name}"><br>
 		내용 <textarea rows="" cols="" name="contents">${dto.contents}</textarea>
 		제목<input type="text" name="subject" value="${dto.subject}"><br>
-		
+		<c:forEach items="${dto.dtos}" var="f">
+		<div class="input-group mb-3">
+			<input type="file" value="${dto.originalName}" class="form-control" id="photos" name="photos">
+		</div>
+		</c:forEach>
 		
 		<button type="submit">수정</button>
 		
