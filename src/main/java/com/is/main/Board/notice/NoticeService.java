@@ -46,7 +46,7 @@ public class NoticeService implements BoardService {
 				noticeFileDTO.setNoticeNo(boardDTO.getNum());
 				noticeFileDTO.setFileName(fileName);
 				noticeFileDTO.setOriginalName(file.getOriginalFilename());
-				//result=noticeDAO.setFileAdd(noticeFileDTO);
+				result=noticeDAO.setFileAdd(noticeFileDTO);
 			}
 		}
 		
