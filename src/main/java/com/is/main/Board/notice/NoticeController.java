@@ -50,7 +50,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String setAdd(NoticeDTO noticeDTO, Model model)throws Exception{
+	public String getDetail(NoticeDTO noticeDTO, Model model)throws Exception{
 		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
 		System.out.println(boardDTO.getContents());
 		model.addAttribute("dto", boardDTO);
@@ -71,7 +71,7 @@ public class NoticeController {
 		//return "redirect:./list";
 		return "redirect:./detail?NoticeNo="+noticeDTO.getNum();
 	}
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String setDelete(@RequestParam(name = "noticeNo") Long num)throws Exception{
 		int result = noticeService.setDelete(num);
 		

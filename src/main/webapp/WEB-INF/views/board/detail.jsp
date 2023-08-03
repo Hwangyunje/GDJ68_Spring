@@ -44,12 +44,20 @@
 		</form>
 		
 		<form>
+			
+			
+			<form id="frm" action="">
+				<input type="hidden" name="num" value="${dto.num}">
+			</form>
 			<c:if test="${board ne 'notice'}">
-			<a class="btn btn-outline-primary" for="btn-check-outlined" href="./reply?num=${dto.num}">답글</a>
-			</c:if>
-			<a class="btn btn-outline-primary" for="btn-check-outlined" href="./update?num=${dto.num}">수정</a>
-			<a class="btn btn-outline-primary" for="btn-check-outlined" href="./delete?num=${dto.num}">삭제</a>
-			<button id="del" a class="btn btn-outline-primary" for="btn-check-outlined" id="parameterName" data-delete-num="${dto.num}">삭제</button>
+			<!-- <a class="btn btn-outline-primary" for="btn-check-outlined" href="./reply?num=${dto.num}">답글</a> -->
+			<button id="reply" class="c1" data-url="reply"></button>	
+		</c:if>
+			<!-- <a class="btn btn-outline-primary" for="btn-check-outlined" href="./update?num=${dto.num}">수정</a>
+			 -->
+			 <button id="update" class="c1" data-url="update">수정</button>
+			<button id="del" data-url="delete" a class="btn btn-outline-primary c1" for="btn-check-outlined" id="parameterName" data-delete-num="${dto.num}">삭제</button>
+			
 			<script src="../resources/js/delete.js"></script>
 		</form>
 		
