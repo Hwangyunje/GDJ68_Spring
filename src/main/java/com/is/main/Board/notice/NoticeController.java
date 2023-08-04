@@ -10,11 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.is.main.Board.BoardDTO;
+import com.is.main.Board.qna.QnaDTO;
 import com.is.main.util.Pager;
 
 @Controller
@@ -44,37 +43,54 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String setAdd(NoticeDTO noticeDTO, MultipartFile[] photos, HttpSession session)throws Exception{
+	public String setAdd(NoticeDTO noticeDTO, MultipartFile[] photos, HttpSession session, Model model)throws Exception{
 		int result = noticeService.setAdd(noticeDTO, photos, session);
-		return "redirect:./list";
+		
+		String message="등록 실패";
+		
+		if(result>0) {
+			message="등록 성공";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("url","./list");
+		
+		return "commons/result";
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail(NoticeDTO noticeDTO, Model model)throws Exception{
+	public String setAdd(NoticeDTO noticeDTO, Model model)throws Exception{
 		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
-		System.out.println(boardDTO.getContents());
+		if(boardDTO !=null) {
 		model.addAttribute("dto", boardDTO);
 		return "board/detail";
-	}
-	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView setUpdate(NoticeDTO noticeDTO,Model model)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("notice/update");
-		mv.addObject("dto", noticeDTO);
-		return mv;
+		}else {
+			model.addAttribute("message","글이 없다");
+			model.addAttribute("url","list");
+			return "commons/result";
+		}
 	}
 	
-	//update
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(NoticeDTO noticeDTO)throws Exception{
-		int result = noticeService.setUpdate(noticeDTO);
-		//return "redirect:./list";
-		return "redirect:./detail?NoticeNo="+noticeDTO.getNum();
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
+		boardDTO = noticeService.getDetail(boardDTO);
+		model.addAttribute("dto", boardDTO);
+		return "board/update";
 	}
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String setDelete(@RequestParam(name = "noticeNo") Long num)throws Exception{
-		int result = noticeService.setDelete(num);
-		
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String setUpdate(NoticeDTO noticeDTO, MultipartFile[] photos, HttpSession session)throws Exception{
+		int result = noticeService.setUpdate(noticeDTO);
 		return "redirect:./list";
 	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public String setAdd(NoticeDTO noticeDTO)throws Exception{
+		int result =noticeService.setDelete(noticeDTO);
+		return "redirect:./list";
+	}	
+	
+	
+	
+
 }

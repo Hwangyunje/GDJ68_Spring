@@ -40,7 +40,7 @@ public class QnaService implements BoardService{
 
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
-		String path="/resources/upload/notice/";
+		String path="/resources/upload/qna/";
 		
 		int result = qnaDAO.setAdd(boardDTO);
 		
@@ -51,7 +51,7 @@ public class QnaService implements BoardService{
 				qnaFileDTO.setQnaNum(boardDTO.getNum());
 				qnaFileDTO.setFileName(fileName);
 				qnaFileDTO.setOriginalName(file.getOriginalFilename());
-				//result=qnaDAO.setFileAdd(noticeFileDTO);
+				result=qnaDAO.setFileAdd(qnaFileDTO);
 			}
 		}
 		
@@ -60,9 +60,15 @@ public class QnaService implements BoardService{
 	}
 
 	@Override
+	public int setUpdate(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.setUpdate(boardDTO);
+	}
+
+	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setDelete(boardDTO);
 	}
 	
 	public int setReplyAdd(QnaDTO qnaDTO, MultipartFile [] files, HttpSession session) throws Exception{
@@ -82,12 +88,7 @@ public class QnaService implements BoardService{
 		return result;
 		//file저장
 	}
-	public int setUpdate(QnaDTO qnaDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.setUpdate(qnaDTO);
-	}
-	public int setDelete(QnaDTO qnaDTO)throws Exception{
-		return qnaDAO.setDelete(qnaDTO);
-	}
+	
+	
 
 }

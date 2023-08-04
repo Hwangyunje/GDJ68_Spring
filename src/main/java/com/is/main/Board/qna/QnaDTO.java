@@ -1,16 +1,25 @@
 package com.is.main.Board.qna;
 
-import java.util.Date;
+import java.util.List;
 
 import com.is.main.Board.BoardDTO;
 
 public class QnaDTO extends BoardDTO{
-
+	
+	
+	private List<QnaFileDTO> dtos;
 	private Long ref;
 	private Long step;
 	private Long depth;
 	
 	
+	
+	public List<QnaFileDTO> getDtos() {
+		return dtos;
+	}
+	public void setDtos(List<QnaFileDTO> dtos) {
+		this.dtos = dtos;
+	}
 	public Long getRef() {
 		return ref;
 	}
@@ -31,4 +40,5 @@ public class QnaDTO extends BoardDTO{
 	}
 	
 	
+
 }

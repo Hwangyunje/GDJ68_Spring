@@ -5,6 +5,13 @@ import java.util.Date;
 public class BoardDTO {
 
 	private Long NoticeNo;
+	private String noticeSubject;
+	public String getnoticeSubject() {
+		return noticeSubject;
+	}
+	public void setNoticeSubject(String noticeSubject) {
+		noticeSubject = noticeSubject;
+	}
 	public Long getNoticeNo() {
 		return NoticeNo;
 	}

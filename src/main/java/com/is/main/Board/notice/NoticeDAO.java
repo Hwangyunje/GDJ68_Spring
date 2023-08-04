@@ -57,5 +57,8 @@ public class NoticeDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public int setFileAdd(NoticeFileDTO noticeFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileAdd", noticeFileDTO);
+	}
 
 }

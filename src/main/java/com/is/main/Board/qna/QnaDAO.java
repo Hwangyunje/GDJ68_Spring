@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.is.main.Board.BoardDAO;
 import com.is.main.Board.BoardDTO;
-import com.is.main.bankBook.BankBookDTO;
 import com.is.main.util.Pager;
 @Repository
 public class QnaDAO implements BoardDAO{
@@ -36,12 +35,16 @@ public class QnaDAO implements BoardDAO{
 		return session.insert(NAMESPACE+"setAdd", boardDTO);
 	}
 
-	
+	@Override
+	public int setUpdate(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return session.update(NAMESPACE+"setUpdate", boardDTO);
+	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return session.delete(NAMESPACE+"setDelete", boardDTO);
 	}
 
 	@Override
@@ -56,6 +59,10 @@ public class QnaDAO implements BoardDAO{
 		return 0;
 	}
 	
+	public int setFileAdd(QnaFileDTO qnaFileDTO)throws Exception{
+		return session.insert(NAMESPACE+"setFileAdd", qnaFileDTO);
+	}
+	
 	public int setReplyAdd(QnaDTO qnaDTO)throws Exception{
 		System.out.println("setReplyAdd");
 		return session.insert(NAMESPACE+"setReplyAdd", qnaDTO);
@@ -64,13 +71,7 @@ public class QnaDAO implements BoardDAO{
 	public int setStepUpdate(QnaDTO qnaDTO)throws Exception{
 		return session.update(NAMESPACE +"setStepUpdate", qnaDTO);
 	}
-	public int setDelete(QnaDTO qnaDTO)throws Exception{
-		return session.delete(NAMESPACE+"setDelete", qnaDTO);
-	}
-	//update
-		public int setUpdate(QnaDTO qnaDTO)throws Exception{
-			return session.update(NAMESPACE+"setUpdate", qnaDTO);
-		}
+
 	
 	
 }
