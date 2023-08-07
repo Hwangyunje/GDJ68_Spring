@@ -36,12 +36,12 @@ public class BankBookController {
 	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mv)throws Exception{
 		
 		//bankBookDTO.setBookNum(Long.parseLong(requestMapping.getParameter("bookNum"));
-		bankBookDTO = bankBookService.getDetail(bankBookDTO);
-		System.out.println(bankBookDTO.getBookName());
-		mv.addObject("dto", bankBookDTO);
-		mv.setViewName("bankbook/detail");
-		return mv;
-	}
+				bankBookDTO = bankBookService.getDetail(bankBookDTO);
+				System.out.println(bankBookDTO.getBookName());
+				mv.addObject("dto", bankBookDTO);
+				mv.setViewName("bankbook/detail");
+				return mv;
+			}
 	
 	//form
 	@RequestMapping(value="add", method = RequestMethod.GET)

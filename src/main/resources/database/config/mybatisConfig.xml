@@ -16,5 +16,7 @@
 		<typeAlias type="com.is.main.Board.qna.QnaDTO" alias="QnaDTO"/>	
 		<typeAlias type="com.is.main.util.Pager" alias="Pager"/>
 		<typeAlias type="com.is.main.Board.qna.QnaFileDTO" alias="QnaFIleDTO"/>
+		<typeAlias type="com.is.main.BookAccount.BookAccountDTO" alias="BookAccountDTO"></typeAlias>
+		<typeAlias type="java.util.Map" alias="Map"></typeAlias>	
 	</typeAliases>
 </configuration>

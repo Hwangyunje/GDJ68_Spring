@@ -49,7 +49,7 @@
 			 LEFT JOIN
 			 BANKFILE BF
 			 ON(B.BOOKNUM=BF.BOOKNUM)
-		WHERE B.BOOKNUM=#{bookNum}
+		WHERE B.BOOKNUM=#{bookNum,jdbcType=VARCHAR}
 	</select>
 	<resultMap type="BankBookDTO" id="getDetailResult">
 		<id column="BOOKNUM" property="bookNum"/>

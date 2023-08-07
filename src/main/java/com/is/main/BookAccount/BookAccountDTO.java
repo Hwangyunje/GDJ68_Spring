@@ -4,57 +4,65 @@ import java.sql.Date;
 
 public class BookAccountDTO {
 	
-	private Long AccountNum;
-	private String Id;
-	private Long BookNum;
-	private Long Account;
-	private Long AccountPassword;
-	private Long AccountBalance;
-	private Date AccountDate;
+	private Long accountNum;
+	private String id;
+	private Long bookNum;
+	private Long account;
+	private String accountPassword;
 	
 	
-	public Date getAccountDate() {
-		return AccountDate;
+	public String getAccountPassword() {
+		return accountPassword;
 	}
-	public void setAccountDate(Date accountDate) {
-		AccountDate = accountDate;
+	public void setAccountPassword(String accountPassword) {
+		this.accountPassword = accountPassword;
 	}
+	private Long accountBalance;
+	private Date accountDate;
+	
+	
 	public Long getAccountNum() {
-		return AccountNum;
+		return accountNum;
 	}
 	public void setAccountNum(Long accountNum) {
-		AccountNum = accountNum;
+		this.accountNum = accountNum;
 	}
 	public String getId() {
-		return Id;
+		return id;
 	}
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 	public Long getBookNum() {
-		return BookNum;
+		return bookNum;
 	}
 	public void setBookNum(Long bookNum) {
-		BookNum = bookNum;
+		this.bookNum = bookNum;
 	}
 	public Long getAccount() {
-		return Account;
+		return account;
 	}
 	public void setAccount(Long account) {
-		Account = account;
+		this.account = account;
 	}
-	public Long getAccountPassword() {
-		return AccountPassword;
-	}
-	public void setAccountPassword(Long accountPassword) {
-		AccountPassword = accountPassword;
-	}
+	
+	
 	public Long getAccountBalance() {
-		return AccountBalance;
+		if(this.accountBalance==null) {
+			this.accountBalance=0L;
+		}
+		return accountBalance;
 	}
 	public void setAccountBalance(Long accountBalance) {
-		AccountBalance = accountBalance;
+		this.accountBalance = accountBalance;
 	}
+	public Date getAccountDate() {
+		return accountDate;
+	}
+	public void setAccountDate(Date accountDate) {
+		this.accountDate = accountDate;
+	}
+	
 	
 	
 }

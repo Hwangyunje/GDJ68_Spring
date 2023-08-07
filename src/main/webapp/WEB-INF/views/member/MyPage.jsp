@@ -1,31 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../temp/bootStrap.jsp"></c:import>
 </head>
 <body>
-
-	<h1>My Page</h1>
+<c:import url="../temp/header.jsp"></c:import>
+<section class="container mt-5">	
+	<h1 class="my-4">My Page</h1>
 	
 	<div>
-	<p>
-		<img alt="" src="../resources/upload/member/${member.memberFIleDTO.fileName}">
-	</p>
-	<p>
-		${member.id}:${sessionScope.member.name}
-	</p>
-	<p>
-		${member.email}
-	</p>
-	<p>
-		${member.birth}
-	</p>
+		<p>
+			<img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}">
+		</p>
+		<p>
+			${member.id} : ${sessionScope.member.name}
+		</p>
+		<p>
+			${member.email}
+		</p>
+		<p>
+			${member.birth}
+		</p>
+		
+		
 	</div>
+
+	<a class="btn btn-primary" href="./memberUpdate">회원수정</a>
 	
-	<a class="btn-primary" href="./memberUpdate">회원수정</a>
+	<div id="productList">
+
+	</div>
+
+</section>
+
+<script>
+	const productList =document.getElementById("productList");
 	
+	getList(1);
+
+	productList.addEventListener("click",function(event){
+		if(event.target.classList.contains("move")){
+			alert("list");
+		}
+	})
+
+	function getList(page){
+		fetch("../bookAccount/list?page="+page, {
+			method:"get"
+		})
+		.then( (response)=>{return response.text()} );
+		.then( (r)=>{
+			productList.innerHTML=r;
+			console.log(r);
+		} );
+		;
+
+	}
+
+	
+</script>
 </body>
 </html>
