@@ -25,7 +25,7 @@ id.addEventListener("blur",function(){
     console.log(id.id);
     const idresult=document.getElementById(id.id+"result")
 
-    fetch("idCheck?id="+id.value, {method:"get"})
+    fetch("idCheck?id="+id.value,{method:"get"})
         .then((response)=>{return response.text()})
         .then((r)=>{
             alert(r.trim());

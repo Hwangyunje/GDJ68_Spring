@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.is.main.coment.ComentDAO">
+  <select id="getList" parameterType="com.is.main.util.Pager" resultType="ComentDTO">
+  	SELECT * FROM
+			(SELECT ROWNUM R, A.* FROM
+			(SELECT * FROM COMENT
+			WHERE ID = #{member.id}
+			ORDER BY COMENTNUM DESC) A)
+			WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+  </select>
+  
+  
+  </mapper>

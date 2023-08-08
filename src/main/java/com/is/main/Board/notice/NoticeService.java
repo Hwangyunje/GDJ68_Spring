@@ -20,6 +20,20 @@ public class NoticeService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 
+	public int setFileDelete(NoticeFileDTO noticeFileDTO,HttpSession session) throws Exception{
+		//폴더 파일 삭제
+		noticeFileDTO=noticeDAO.getFileDetail(noticeFileDTO);
+		boolean flag=fileManager.fileDelete(noticeFileDTO, "/resources/upload/notice/", null);
+		
+		if(flag) {
+			
+		
+		//db삭제
+			return noticeDAO.setFileDelete(noticeFileDTO);
+		}
+		return 0;
+		}
+	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
@@ -55,9 +69,21 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.setUpdate(boardDTO);
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		int result= noticeDAO.setUpdate(boardDTO);
+		for(MultipartFile file:files) {
+			String path="/resources/upload/notice/";
+			if(!file.isEmpty()) {
+				String fileName=fileManager.fileSave(path, session, file);
+				NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+				noticeFileDTO.setNoticeNo(boardDTO.getNum());
+				noticeFileDTO.setFileName(fileName);
+				noticeFileDTO.setOriginalName(file.getOriginalFilename());
+				result=noticeDAO.setFileAdd(noticeFileDTO);
+			}
+		}
+	
+		return result;
 	}
 
 	@Override

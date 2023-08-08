@@ -36,12 +36,11 @@ public class BankBookController {
 	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mv)throws Exception{
 		
 		//bankBookDTO.setBookNum(Long.parseLong(requestMapping.getParameter("bookNum"));
-				bankBookDTO = bankBookService.getDetail(bankBookDTO);
-				System.out.println(bankBookDTO.getBookName());
-				mv.addObject("dto", bankBookDTO);
-				mv.setViewName("bankbook/detail");
-				return mv;
-			}
+		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+		mv.addObject("dto", bankBookDTO);
+		mv.setViewName("bankbook/detail");
+		return mv;
+	}
 	
 	//form
 	@RequestMapping(value="add", method = RequestMethod.GET)
@@ -52,7 +51,7 @@ public class BankBookController {
 	//db insert
 	@RequestMapping(value="add", method = RequestMethod.POST)
 	public String setAdd(BankBookDTO bankBookDTO, MultipartFile [] photos, HttpSession session)throws Exception{
-		int result = bankBookService.setAdd(bankBookDTO,photos ,session);
+		int result = bankBookService.setAdd(bankBookDTO, photos, session);
 		return "redirect:./list";
 	}
 	

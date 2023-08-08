@@ -4,12 +4,38 @@
 
 const add = document.getElementById("add");
 const fileList = document.getElementById("fileList");
+const delets= document.getElementsByClassName("delets");
 
+//------------------------------------------------
+for(del of delets){
+    del.addEventListener("click", function(){
+        let num=this.getAttribute("data-delete-num");
+        let check=confirm("삭제시 복구 불가");
+        
+        if(check){
+            fetch("./fileDelete?filenum="+num, {method:"get"})
+                .then((result)=>{return result.text()})
+                .then((r)=>{ 
+                    if(r.trim()=='1'){
+                        console.log(this.previousSibling.previousSibling.remove());
+                        this.remove();
+                        count--;
+                    }
 
+                })
+        }
+
+    });
+}
 
 
 let max=5;
 let count=0;
+if(delets !=null){
+    count=delets.length;
+    alert(count);
+}
+
 let idx=0;
 
 fileList.addEventListener("click", function(event){

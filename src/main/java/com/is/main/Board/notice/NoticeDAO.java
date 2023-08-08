@@ -14,7 +14,15 @@ import com.is.main.util.Pager;
 public class NoticeDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="com.is.main.board.notice.NoticeDAO.";
+	private final String NAMESPACE="com.is.main.Board.notice.NoticeDAO.";
+	
+	public NoticeFileDTO getFIleDetail(NoticeFileDTO noticeFileDTO) {
+		return sqlSession.selectOne(NAMESPACE+"getFIleDetail",NoticeFileDTO);
+	}
+	
+	public int setFileDelete(NoticeFileDTO noticeFilefileNum) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setFileDelete",NoticeFileDTO);
+	}
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {

@@ -12,7 +12,7 @@ public class MemberDAO {
 	private final String NAMESPACE="com.is.main.member.MemberDAO.";
 	
 	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"setIdCheck",memberDTO);
+		return sqlSession.selectOne(NAMESPACE+"getIdCheck",memberDTO);
 	}
 	public int setFileJoin(MemberFileDTO memberFileDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setFileJoin",memberFileDTO);

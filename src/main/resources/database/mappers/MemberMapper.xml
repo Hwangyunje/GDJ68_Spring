@@ -16,7 +16,7 @@
   
   <!-- ID중복 -->
   <select id="getIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
-  	SELECT ID FROM MEMBER WHERE ID=#{id}
+  		SELECT ID FROM MEMBER WHERE ID=#{id}
   </select>
   
 	<!-- 로그인 -->

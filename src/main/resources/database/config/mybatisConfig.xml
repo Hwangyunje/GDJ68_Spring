@@ -18,5 +18,6 @@
 		<typeAlias type="com.is.main.Board.qna.QnaFileDTO" alias="QnaFIleDTO"/>
 		<typeAlias type="com.is.main.BookAccount.BookAccountDTO" alias="BookAccountDTO"></typeAlias>
 		<typeAlias type="java.util.Map" alias="Map"></typeAlias>	
+		<typeAlias type="com.is.main.coment.ComentDTO" alias="ComentDTO"></typeAlias>
 	</typeAliases>
 </configuration>
