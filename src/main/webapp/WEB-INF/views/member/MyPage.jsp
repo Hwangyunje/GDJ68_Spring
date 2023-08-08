@@ -45,7 +45,8 @@
 
 	productList.addEventListener("click",function(event){
 		if(event.target.classList.contains("move")){
-			alert("list");
+			let page=event.target.getAttribute("data-num");
+			getList(page);
 		}
 	})
 

@@ -49,5 +49,8 @@ public class MemberService {
 	public int setMemberUpdate(MemberDTO memberDTO)throws Exception{
 		return memberDAO.setMemberUpdate(memberDTO);
 	}	
+	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
+		return memberDTO.getIdCheck(memberDTO);
+	}
 
 }

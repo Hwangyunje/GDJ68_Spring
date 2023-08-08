@@ -23,6 +23,7 @@ public class BookAccountController {
 	
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager,HttpSession session) throws Exception{
+		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute(memberDTO);
 		List<BookAccountDTO> ar=bookAccountService.getList(memberDTO, pager);
 		ModelAndView mv =new ModelAndView();

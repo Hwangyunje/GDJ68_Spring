@@ -15,7 +15,7 @@ let nameCheckResult=false;
 let emailCheckResult=false;
 
 
-let checkResults=[false,false,false,false,false,false];
+let checkResults=[false,false,false,false,false,false,false];
 
 //pwCheck
 
@@ -25,16 +25,32 @@ id.addEventListener("blur",function(){
     console.log(id.id);
     const idresult=document.getElementById(id.id+"result")
 
-    if(id.value==''||id.value.length>10){
-        idresult.innerHTML="ID는 비어있으면x,10글자미만이어야한다"
-        idresult.className="f";
-        checkResult[0]=false;
-    }else{
-        console.log("ok")
-        idresult.innerHTML="가능한id입니다";
-        idresult.className="s";
-        checkResult[0]=false;
-    }     
+    fetch("idCheck?id="+id.value, {method:"get"})
+        .then((response)=>{return response.text()})
+        .then((r)=>{
+            alert(r.trim());
+            if(r.tirm()=='1'){
+                alert("중복아님")
+                
+                if(id.value==''||id.value.length>10){
+                    idresult.innerHTML="ID는 비어있으면x,10글자미만이어야한다"
+                    idresult.className="f";
+                    checkResults[0]=false;
+                    checkResults[6]=false;
+                }else{
+                    console.log("ok")
+                    idresult.innerHTML="가능한id입니다";
+                    idresult.className="s";
+                    checkResults[0]=false;
+                    checkResults[6]=true;
+                }     
+            }else{
+                idresult.innerHTML="이미 사용중인ID입니다";
+                idresult.className="f";
+                checkResults[0]=false;
+                checkResults[6]=false;
+            }
+        })
     
 })
 //----------------------------------------
@@ -127,7 +143,7 @@ btn.addEventListener("click",function(){
     let c =checkResults.includes(false);
     if(!c){
         console.log("form전송")
-        frm.submit();
+        // frm.onsubmit();
     }else{
         alert("필수항목은 입력해");
     }
