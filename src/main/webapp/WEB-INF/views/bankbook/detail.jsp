@@ -42,6 +42,24 @@
 	<a class="btn btn-primary" href="../bookAccount/add?bookNum=${dto.bookNum}">상품가입</a>
 	<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#accountModal">상품가입</button>
 
+	<!--댓글-->
+	<div>
+		<div class="mb-3">
+			<textarea name="accountPassword" class="form-control" id="coment" ></textarea>
+			<button id="comentAdd">댓글등록</button>
+		</div>
+	<div>
+		<table id="comentList">
+			
+		</table>
+
+	</div>
+
+
+	</div>
+
+
+
 	<!-- Modal -->
 	<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -79,71 +97,113 @@
 	</script> -->
 	
 	<script type="text/javascript">
-		const add = document.getElementById("add");
-
-		add.addEventListener("click", function(){
-			let bookNum=add.getAttribute("data-add-num");
-			let pw = document.getElementById("pw").value;
-			//ajax1(bookNum, pw);
-			ajax2(bookNum,pw);
-
+	
+	getComentList($("#add").attr("data-add-num"),1)
+	
+	function getComentList(bookNum, page){
+		$.ajax({
+			type:"get",
+			url:"./comnetList",
+			data:{
+				bookNum:bookNum,
+				page:page
+			},
+			success:function(result){
+				$("#comentList").append(result);
+			},
+			error:function(){
+				alert("관리자에게 문의")
+			}
+		})
+	}
+	
+	
+	
+	
+	
+	
+	
+		alert(temp);
+		$("#add").click(function(){
+			let bookNum=$("#add").attr("data-add-num");
+			let pw=$("#pw").val();
+			ajax3(bookNum,pw);
 		});
 
-
-		function ajax2(bookNum, pw){
-			fetch("../bookAccount/add", {
-				method:"post",
-				body:"bookNum="+bookNum+"&accountPassword="+pw,
-				headers:{
-					"content-type":"application/x-www-form-urlencoded"
-				}
-			})
-			.then((response)=>{
-				return response.text();
-			})
-			.then((r)=>{
-				if(r>0){
-					alert("가입 완료");
-				}else {
-					alert("가입 실패");
-				}
-
-				location.href="../"
-			})
-			;
-		}
-
-		function ajax1(bookNum, pw){
-			
-			//1. 
-			let xhttp = new XMLHttpRequest();
-
-			//2. 요청 정보
-			xhttp.open("post", "../bookAccount/add");
-
-			//요청 header 정보
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-			//요청 발생(post일 경우 파라미터 작성 key=값&key2=값2)
-			xhttp.send("bookNum="+bookNum+"&accountPassword="+pw);
-
-			//응답 처리
-			xhttp.onreadystatechange=function(){
-				if(this.readyState==4&&this.status==200){
-					let r = this.responseText.trim();
-					document.getElementById("close").click();
-					console.log(r);
-					if(r>0){
-						alert("가입 성공");
-					}else {
-						alert("가입 실패");
+		function ajax3(bookNum,pw){
+			$.ajax({
+				type:"get",
+				url:"../bookAccount/add",
+				data:{
+					bookNum:bookNum,
+					accountPassword:pw
+				},
+				success:function(response){
+					if(response.trim()>0){
+						alert("가입성공");
+					}else{
+						alert("가입실패")
 					}
-
-
-					location.href="../";
+				},error:function(){
+					alert("관리자에게 문의")
 				}
-			}
+			})
 		}
+
+		// function ajax2(bookNum, pw){
+		// 	fetch("../bookAccount/add", {
+		// 		method:"post",
+		// 		body:"bookNum="+bookNum+"&accountPassword="+pw,
+		// 		headers:{
+		// 			"content-type":"application/x-www-form-urlencoded"
+		// 		}
+		// 	})
+		// 	.then((response)=>{
+		// 		return response.text();
+		// 	})
+		// 	.then((r)=>{
+		// 		if(r>0){
+		// 			alert("가입 완료");
+		// 		}else {
+		// 			alert("가입 실패");
+		// 		}
+
+		// 		location.href="../"
+		// 	})
+		// 	;
+		// }
+
+		// function ajax1(bookNum, pw){
+			
+		// 	//1. 
+		// 	let xhttp = new XMLHttpRequest();
+
+		// 	//2. 요청 정보
+		// 	xhttp.open("post", "../bookAccount/add");
+
+		// 	//요청 header 정보
+		// 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		// 	//요청 발생(post일 경우 파라미터 작성 key=값&key2=값2)
+		// 	xhttp.send("bookNum="+bookNum+"&accountPassword="+pw);
+
+		// 	//응답 처리
+		// 	xhttp.onreadystatechange=function(){
+		// 		if(this.readyState==4&&this.status==200){
+		// 			let r = this.responseText.trim();
+		// 			document.getElementById("close").click();
+		// 			console.log(r);
+		// 			if(r>0){
+		// 				alert("가입 성공");
+		// 			}else {
+		// 				alert("가입 실패");
+		// 			}
+
+
+		// 			location.href="../";
+		// 		}
+		// 	}
+		// }
 	
 	</script>
 

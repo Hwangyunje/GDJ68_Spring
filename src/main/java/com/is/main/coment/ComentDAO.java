@@ -1,6 +1,7 @@
 package com.is.main.coment;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,11 @@ public class ComentDAO {
 		
 		private final String NAMESPACE="com.is.main.coment.comentDAO.";
 		
-		public List<ComentDTO> getList(Pager pager)throws Exception{
-			return sqlSession.selectList(NAMESPACE+"getList",pager);
+		public List<ComentDTO> getComentList(Map<String, Object> map)throws Exception{
+			return sqlSession.selectList(NAMESPACE+"getComentList",map);
 		}
 	
-		public Long getTotal (Pager pager)throws Exception{
-			return sqlSession.selectOne(NAMESPACE+"getTotal",pager);
+		public Long getComentTotal (ComentDTO comentDTO)throws Exception{
+			return sqlSession.selectOne(NAMESPACE+"getTotal",comentDTO);
 		}
 }

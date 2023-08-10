@@ -11,11 +11,12 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.is.main.member.MemberDAO.";
 	
-	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getIdCheck",memberDTO);
+	public MemberDTO getIdCheck(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getIdCheck", memberDTO);
 	}
-	public int setFileJoin(MemberFileDTO memberFileDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setFileJoin",memberFileDTO);
+	
+	public int setFileJoin(MemberFileDTO memberFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileJoin", memberFileDTO);
 	}
 	
 	public int setJoin(MemberDTO memberDTO)throws Exception{

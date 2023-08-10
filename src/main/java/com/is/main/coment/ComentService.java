@@ -1,10 +1,12 @@
 package com.is.main.coment;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.is.main.bankBook.BankBookDAO;
 import com.is.main.util.FileManager;
 import com.is.main.util.Pager;
 
@@ -15,12 +17,15 @@ public class ComentService {
 	@Autowired
 	private FileManager filemanager;
 	
-	public List<ComentDTO> getList(Pager pager)throws Exception{
-		
+	public List<ComentDTO> getComentList(Pager pager, ComentDTO comentDTo)throws Exception{
+		Map<String, Object> map=new HashMap<String,Object>();
 		pager.makeRowNum();
-		Long total = comentDAO.getTotal(pager);
-		pager.makePageNum(total);
+		pager.makePageNum(BankBookDAO.getComentTotal(ComentDTO));
+		map.put("pager", pager);
+		map.put("coment", pager);
 		
-		return comentDAO.getList(pager);
+		return bankBookDAO.getComentList(map);
 	}
+
+	
 }

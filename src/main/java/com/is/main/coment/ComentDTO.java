@@ -5,10 +5,18 @@ import java.sql.Date;
 public class ComentDTO {
 
 	private Long bookNum;
+	private String id;
 	private Long comentNum;
 	private String comentName;
 	private String comentContents;
 	private Date comentDate;
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public Long getBookNum() {
 		return bookNum;
 	}
