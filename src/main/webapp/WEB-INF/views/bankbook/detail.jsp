@@ -1,4 +1,4 @@
-%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
@@ -53,6 +53,10 @@
 			
 		</table>
 
+		<div id=""more">
+			<button>더보기</button>
+		</div>
+
 	</div>
 
 
@@ -97,19 +101,63 @@
 	</script> -->
 	
 	<script type="text/javascript">
+	let bn=$("#add").attr("data-add-num");
+	let pageNum=1;
+	let tp=0;
+
+
+		$("#comentAdd").click(function(){
+			let contents=$("#coment").val();
+			$.ajax({
+				type:'POST',
+				url:'comentAdd',
+				data:{
+					bookNum:bn,
+					comentContents:contents
+				},
+				success:function(reslut){
+					if(result.trim()>0){
+						alert('댓글등록');
+						$("comnetList").empty();
+						$("#coment").val("");
+						pageNum=1;
+						getComentList(bn, 1);
+					}
+				}
+			});
+
+
+
+		})
+
+		$("#more").on("click","#moreButton",function(){
+			
+		if(pageNum>=tp){
+			alert('마지막 페이지');
+			return;
+		}
+
+			pageNum++;
+			getComentList(bn, pageNum);
+
+		})
+
+	getComentList(bookNum,pageNum);
 	
-	getComentList($("#add").attr("data-add-num"),1)
-	
-	function getComentList(bookNum, page){
+	function getComentList(bn, page){
 		$.ajax({
 			type:"get",
-			url:"./comnetList",
+			url:"./comentList",
 			data:{
 				bookNum:bookNum,
 				page:page
 			},
 			success:function(result){
 				$("#comentList").append(result);
+				tp=$("#totalPage").attr("data-totalPage");
+				let button='<button id="moreButton">더보기('+pageNum+'/'+tp+')</button>'
+				console.log(result)
+				$("#more").html(button);
 			},
 			error:function(){
 				alert("관리자에게 문의")

@@ -70,7 +70,7 @@
 		getList(p);
 	})
 
-
+ 	getList(1);
 	function getList(page){
 		$.ajax({
 			type:'get',

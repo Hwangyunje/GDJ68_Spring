@@ -17,11 +17,11 @@ public class NoticeDAO implements BoardDAO {
 	private final String NAMESPACE="com.is.main.Board.notice.NoticeDAO.";
 	
 	public NoticeFileDTO getFIleDetail(NoticeFileDTO noticeFileDTO) {
-		return sqlSession.selectOne(NAMESPACE+"getFIleDetail",NoticeFileDTO);
+		return sqlSession.selectOne(NAMESPACE+"getFIleDetail",noticeFileDTO);
 	}
 	
 	public int setFileDelete(NoticeFileDTO noticeFilefileNum) throws Exception{
-		return sqlSession.delete(NAMESPACE+"setFileDelete",NoticeFileDTO);
+		return sqlSession.delete(NAMESPACE+"setFileDelete",noticeFileDTO);
 	}
 	
 	@Override

@@ -22,4 +22,8 @@ public class ComentDAO {
 		public Long getComentTotal (ComentDTO comentDTO)throws Exception{
 			return sqlSession.selectOne(NAMESPACE+"getTotal",comentDTO);
 		}
+		
+		public int setComentAdd(ComentDTO comentDTO)throws Exception{
+			return sqlSession.insert(NAMESPACE+"setComentAdd", comentDTO);
+		}
 }

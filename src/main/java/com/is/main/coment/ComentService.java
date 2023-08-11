@@ -1,5 +1,6 @@
 package com.is.main.coment;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,15 +18,17 @@ public class ComentService {
 	@Autowired
 	private FileManager filemanager;
 	
-	public List<ComentDTO> getComentList(Pager pager, ComentDTO comentDTo)throws Exception{
+	public List<ComentDTO> getComentList(Pager pager, ComentDTO comentDTO)throws Exception{
 		Map<String, Object> map=new HashMap<String,Object>();
 		pager.makeRowNum();
-		pager.makePageNum(BankBookDAO.getComentTotal(ComentDTO));
+		pager.makePageNum(ComentDAO.getComentTotal(comentDTO));
 		map.put("pager", pager);
-		map.put("coment", pager);
+		map.put("coment", comentDTO);
 		
-		return bankBookDAO.getComentList(map);
+		return comentDAO.getComentList(map);
 	}
 
-	
+	public int setComentAdd(ComentDTO comentDTO) throws Exception{
+		return comentDAO.setComentAdd(comentDTO);
+	}
 }

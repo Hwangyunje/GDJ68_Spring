@@ -5,19 +5,22 @@
 	 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.is.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
+			<typeAlias type="com.is.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.is.main.bankBook.BankBookFileDTO" alias="BankBookFileDTO"/>
+		<typeAlias type="com.is.main.coment.ComentDTO" alias="ComentDTO"/>
+		
+		<typeAlias type="com.is.main.BookAccount.BookAccountDTO" alias="BookAccountDTO"/>
+		
 		<typeAlias type="com.is.main.member.MemberDTO" alias="MemberDTO"/>
-		<typeAlias type="com.is.main.Board.notice.NoticeDTO" alias="NoticeDTO"/>
-		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.is.main.member.MemberFileDTO" alias="MemberFileDTO"/>
-		<typeAlias type="java.util.List" alias="List"/>
-		<typeAlias type="com.is.main.Board.notice.NoticeFileDTO" alias="NoticeFileDTO"></typeAlias>
-		<typeAlias type="com.is.main.Board.qna.QnaDTO" alias="QnaDTO"/>	
+		<typeAlias type="com.is.main.Board.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.is.main.Board.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
+		<typeAlias type="com.is.main.Board.qna.QnaFileDTO" alias="QnaFileDTO"/>
+		<typeAlias type="com.is.main.Board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.is.main.util.Pager" alias="Pager"/>
-		<typeAlias type="com.is.main.Board.qna.QnaFileDTO" alias="QnaFIleDTO"/>
-		<typeAlias type="com.is.main.BookAccount.BookAccountDTO" alias="BookAccountDTO"></typeAlias>
-		<typeAlias type="java.util.Map" alias="Map"></typeAlias>	
-		<typeAlias type="com.is.main.coment.ComentDTO" alias="ComentDTO"></typeAlias>
+		
+		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
 	</typeAliases>
 </configuration>
