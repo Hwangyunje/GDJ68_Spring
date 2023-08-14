@@ -54,9 +54,9 @@ public class NoticeController {
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model)throws Exception{
-		List<BoardDTO> ar =  noticeService.getList(pager);
-		model.addAttribute("list", ar);
-		model.addAttribute("pager", pager);
+//		List<BoardDTO> ar =  noticeService.getList(pager);
+//		model.addAttribute("list", ar);
+//		model.addAttribute("pager", pager);
 		return "board/list";
 	}
 	

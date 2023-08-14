@@ -31,9 +31,9 @@ public class QnaController {
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model)throws Exception{
-		List<BoardDTO> ar =  qnaService.getList(pager);
-		model.addAttribute("list", ar);
-		model.addAttribute("pager", pager);
+//		List<BoardDTO> ar =  qnaService.getList(pager);
+//		model.addAttribute("list", ar);
+//		model.addAttribute("pager", pager);
 		return "board/list";
 	}
 	
@@ -77,8 +77,8 @@ public class QnaController {
 	
 	//update
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(QnaDTO qnaDTO)throws Exception{
-		int result = qnaService.setUpdate(qnaDTO);
+	public String setUpdate(QnaDTO qnaDTO,MultipartFile[] photos,HttpSession session)throws Exception{
+		int result = qnaService.setUpdate(qnaDTO,photos,session);
 	
 		return "redirect:./detail?qnaNum="+qnaDTO.getNum();
 	}

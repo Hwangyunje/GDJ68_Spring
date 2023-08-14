@@ -41,7 +41,7 @@ public class MemberService {
 		}
 		
 		
-		return 0;//memberDAO.setJoin(memberDTO);
+		return result;//memberDAO.setJoin(memberDTO);
 	}
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getLogin(memberDTO);

@@ -76,8 +76,10 @@
 			  </div>
 		  </form>
 		</div>
-		<a class="btn btn-outline-primary" for="btn-check-outlined" href="./add">글쓰기</a>
 		
+		<c:if test="${not empty member}">
+		<a class="btn btn-outline-primary" for="btn-check-outlined" href="./add">글쓰기</a>
+		</c:if>
 	
 	</section>
 
